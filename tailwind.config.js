@@ -3,10 +3,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        heading: ["Oswald", "sans-serif"],
-        body: ["Inter", "sans-serif"],
+        heading: ['Space Grotesk', 'sans-serif'],
+        body: ['Manrope', 'sans-serif'],
       },
     },
   },
   plugins: [],
-};
+}
