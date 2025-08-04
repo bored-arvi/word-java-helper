@@ -1,8 +1,9 @@
 import React from "react";
+import { FaGithub } from "react-icons/fa";
 
 export default function Header() {
-  const handleScroll = () => {
-    const section = document.getElementById("learn-more");
+  const handleScroll = (id) => {
+    const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
     }
@@ -10,32 +11,45 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 w-full flex justify-between items-center px-8 py-4 
-                       bg-transparent shadow-none animate-fadeDown z-50">
-      {/* Logo */}
+                       bg-transparent shadow-none z-50">
+      {/* Left: Logo */}
       <div className="font-heading text-2xl font-light text-white">
         Javord
       </div>
 
-      {/* Buttons */}
+      {/* Center: Navigation Links */}
+      <nav className="flex gap-8 text-white font-heading text-lg">
+        <button 
+          onClick={() => handleScroll("about-me")}
+          className="hover:text-gray-300 transition"
+        >
+          README
+        </button>
+        <button 
+          onClick={() => handleScroll("features")}
+          className="hover:text-gray-300 transition"
+        >
+          Features
+        </button>
+        <button 
+          onClick={() => handleScroll("about-me")}
+          className="hover:text-gray-300 transition"
+        >
+          About Me
+        </button>
+      </nav>
+
+      {/* Right: Action Buttons */}
       <div className="flex gap-4">
-        {/* GitHub Star Button */}
         <a
           href="https://github.com/your-repo"
           target="_blank"
           rel="noopener noreferrer"
           className="font-heading px-5 py-2 rounded-full border border-white text-white 
-                     bg-transparent hover:bg-white hover:text-black transition duration-300"
+                     bg-transparent hover:bg-white hover:text-black transition duration-300 flex items-center gap-2"
         >
-          Star this Repo
+          <FaGithub /> Star this Repo
         </a>
-        {/* Scroll Button */}
-        <button
-          onClick={handleScroll}
-          className="font-heading px-5 py-2 rounded-full border border-white text-white 
-                     bg-transparent hover:bg-white hover:text-black transition duration-300"
-        >
-          Learn More
-        </button>
       </div>
     </header>
   );
