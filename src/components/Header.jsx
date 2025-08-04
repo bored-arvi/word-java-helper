@@ -42,7 +42,7 @@ export default function Header() {
       {/* Right: Action Buttons */}
       <div className="flex gap-4">
         <a
-          href="https://github.com/your-repo"
+          href="https://github.com/bored-arvi/word-java-helper"
           target="_blank"
           rel="noopener noreferrer"
           className="font-heading px-5 py-2 rounded-full border border-white text-white 
