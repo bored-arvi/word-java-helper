@@ -4,12 +4,25 @@ import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 export default function About() {
   return (
     <section id="about-me" className="w-full flex justify-center items-center py-20 px-4">
-      {/* Glass Card (centered) */}
+      {/* Glass Card */}
       <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-xl max-w-3xl w-full p-10 text-white">
         
         {/* Corner Accents */}
+        {/* Top Left */}
         <div className="absolute top-0 left-0 w-16 h-1 bg-white/30"></div>
         <div className="absolute top-0 left-0 w-1 h-16 bg-white/30"></div>
+        
+        {/* Top Right */}
+        <div className="absolute top-0 right-0 w-16 h-1 bg-white/30"></div>
+        <div className="absolute top-0 right-0 w-1 h-16 bg-white/30"></div>
+        
+        {/* Bottom Left */}
+        <div className="absolute bottom-0 left-0 w-16 h-1 bg-white/30"></div>
+        <div className="absolute bottom-0 left-0 w-1 h-16 bg-white/30"></div>
+        
+        {/* Bottom Right */}
+        <div className="absolute bottom-0 right-0 w-16 h-1 bg-white/30"></div>
+        <div className="absolute bottom-0 right-0 w-1 h-16 bg-white/30"></div>
 
         <h2 className="font-heading text-4xl mb-6">About Me</h2>
         <p className="font-body text-lg text-gray-200 leading-relaxed mb-8">

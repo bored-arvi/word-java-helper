@@ -21,9 +21,10 @@ export default function App() {
       {/* Technologies Carousel */}
       <Technologies />
 
+
       {/* Glass Features Cards */}
       <Features />
-
+      
       {/* About Me Section */}
       <About />
     </div>
