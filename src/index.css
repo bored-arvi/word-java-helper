@@ -28,3 +28,14 @@
 .animate-bounceSlow {
   animation: bounceSlow 2s infinite;
 }
+@keyframes tech-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-tech-scroll {
+  display: flex;
+  width: max-content;
+  animation: tech-scroll 20s linear infinite;
+}
+
