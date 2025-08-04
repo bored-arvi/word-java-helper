@@ -18,7 +18,7 @@ export default function Background() {
       midtoneColor: 0x37373b,
       lowlightColor: 0x15151a,
       baseColor: 0x0f172a,
-      blurFactor: 0.9,
+      blurFactor: 0.7,
       zoom: 0.7,
     });
     return () => {
