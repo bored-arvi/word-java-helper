@@ -1,8 +1,8 @@
-import { FaReact, FaNodeJs, FaGithub } from "react-icons/fa";
+import { FaPython, FaReact, FaNodeJs, FaGithub } from "react-icons/fa";
 import { SiTailwindcss, SiOpenjdk, SiVite } from "react-icons/si";
 
 
-const techIcons = [FaReact, SiTailwindcss, SiOpenjdk, SiVite, FaNodeJs, FaGithub];
+const techIcons = [FaReact, SiTailwindcss, SiOpenjdk, SiVite, FaNodeJs, FaGithub, FaPython];
 
 export default function Technologies() {
   return (
