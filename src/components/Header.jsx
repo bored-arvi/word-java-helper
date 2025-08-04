@@ -1,0 +1,11 @@
+import React from "react";
+
+export default function Header() {
+  return (
+    <header className="flex justify-between items-center px-8 py-4 bg-transparent shadow-none animate-fadeDown">
+      <div className="text-2xl font-bold text-white">
+        Java Report Generator
+      </div>
+    </header>
+  );
+}
