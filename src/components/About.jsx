@@ -34,7 +34,7 @@ export default function About() {
         {/* Social Links */}
         <div className="flex space-x-6 text-2xl">
           <a 
-            href="https://github.com/your-username" 
+            href="https://github.com/bored-arvi" 
             target="_blank" 
             rel="noopener noreferrer"
             className="hover:text-gray-400 transition duration-300"
@@ -42,7 +42,7 @@ export default function About() {
             <FaGithub />
           </a>
           <a 
-            href="https://linkedin.com/in/your-username" 
+            href="https://linkedin.com/in/aravinth-k-097057319" 
             target="_blank" 
             rel="noopener noreferrer"
             className="hover:text-gray-400 transition duration-300"
@@ -50,7 +50,7 @@ export default function About() {
             <FaLinkedin />
           </a>
           <a 
-            href="https://twitter.com/your-username" 
+            href="https://x.com/arvnthkuro" 
             target="_blank" 
             rel="noopener noreferrer"
             className="hover:text-gray-400 transition duration-300"
