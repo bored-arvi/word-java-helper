@@ -14,12 +14,12 @@ export default function Background() {
       gyroControls: false,
       minHeight: 200.0,
       minWidth: 200.0,
-      highlightColor: 0xf2f2f2,
-      midtoneColor: 0x37373b,
-      lowlightColor: 0x15151a,
-      baseColor: 0x0f172a,
-      blurFactor: 0.7,
-      zoom: 0.7,
+      baseColor: 0x0b0b0f,     // very dark base
+        highlightColor: 0x6366f1, // purple-ish accent
+        midtoneColor: 0x1e1e28,   // dark gray midtones
+        lowlightColor: 0x0f172a,  // deep navy
+        blurFactor: 0.7,
+        zoom: 0.5,
     });
     return () => {
       if (effect) effect.destroy();
