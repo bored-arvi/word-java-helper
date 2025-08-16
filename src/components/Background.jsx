@@ -19,7 +19,7 @@ export default function Background() {
         midtoneColor: 0x1e1e28,   // dark gray midtones
         lowlightColor: 0x0f172a,  // deep navy
         blurFactor: 0.7,
-        zoom: 0.5,
+        zoom: 1,
     });
     return () => {
       if (effect) effect.destroy();
