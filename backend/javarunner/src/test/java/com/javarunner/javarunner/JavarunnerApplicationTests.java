@@ -1,4 +1,4 @@
-package com.javarunner.javarunner;
+package com.javarunner.fileprocessor;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
