@@ -1,4 +1,4 @@
-import React from "react";
+import {useRef} from "react";
 
 export default function Hero() {
   return (
@@ -10,9 +10,44 @@ export default function Hero() {
         Upload your question file and Java solutions to automatically generate
         a combined Word report with formatted code and execution screenshots.
       </p>
-      <button className="font-heading bg-white/10 backdrop-blur-md border border-white/30 text-white px-10 py-4 rounded-full text-xl font-semibold hover:bg-white hover:text-black transition transform hover:scale-110 hover:shadow-xl duration-300">
-            Upload Now
-        </button>
+      <UploadButton />
     </section>
+  );
+}
+function UploadButton() {
+  const fileInputRef = useRef(null);
+
+  const handleClick = () => {
+    fileInputRef.current.click(); // trigger hidden input
+  };
+
+  const handleFileChange = (event) => {
+    const files = event.target.files;
+    for (const file of files) {
+      console.log("File:", file.name, "Path:", file.webkitRelativePath);
+    }
+  };
+
+  return (
+    <div>
+      {/* Styled button */}
+      <button
+        className="font-heading bg-white/10 backdrop-blur-md border border-white/30 text-white px-10 py-4 rounded-full text-xl font-semibold hover:bg-white hover:text-black transition transform hover:scale-110 hover:shadow-xl duration-300"
+        onClick={handleClick}
+      >
+        Upload Now
+      </button>
+
+      {/* Hidden input for folder selection */}
+      <input
+        type="file"
+        webkitdirectory="true"
+        directory=""
+        multiple
+        ref={fileInputRef}
+        style={{ display: "none" }}
+        onChange={handleFileChange}
+      />
+    </div>
   );
 }
