@@ -9,6 +9,7 @@ import org.apache.poi.xwpf.usermodel.*;
 
 import java.io.*;
 import java.nio.file.*;
+import java.util.Objects;
 import java.util.UUID;
 
 @RestController
@@ -28,25 +29,50 @@ public class FileProcessorController {
         Path outputPath = Paths.get(OUTPUT_DIR);
         if (!Files.exists(outputPath)) Files.createDirectories(outputPath);
 
+        String absoluteUploadPath = uploadPath.toAbsolutePath().toString();
+        String absoluteOutputPath = outputPath.toAbsolutePath().toString();
+
         // Create Word document
         String wordFileName = OUTPUT_DIR + "/Result_" + UUID.randomUUID() + ".docx";
         XWPFDocument doc = new XWPFDocument();
 
-        for (MultipartFile file : files) {
-            Path filePath = uploadPath.resolve(file.getOriginalFilename());
-            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+        for (MultipartFile multipartFile : files) {
+            Path filePath = uploadPath.resolve(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+            Files.copy(multipartFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+            File file = filePath.toFile();
+
+            String className = multipartFile.getOriginalFilename().replace(".java", "");
 
             // Compile and run Java file
-            Process compile = new ProcessBuilder("javac", filePath.toString()).start();
+            Process compile = new ProcessBuilder(
+                    "javac",
+                    "-d", absoluteUploadPath,
+                    filePath.toAbsolutePath().toString()
+            ).redirectErrorStream(true).directory(new File(System.getProperty("user.dir"))).start();
+
+            StringBuilder compileOutput = new StringBuilder();
+            try(BufferedReader reader = new BufferedReader(new InputStreamReader(compile.getInputStream()))){
+                String line;
+                while((line = reader.readLine()) != null){
+                    compileOutput.append(line).append("\n");
+                }
+            }
             compile.waitFor();
 
-            String className = file.getOriginalFilename().replace(".java", "");
-            Process run = new ProcessBuilder("java", "-cp", UPLOAD_DIR, className)
+            Process run = new ProcessBuilder("java", "-cp", absoluteUploadPath, className)
                     .redirectErrorStream(true)
+                    .directory(new File(System.getProperty("user.dir")))
                     .start();
 
             StringBuilder output = new StringBuilder();
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(run.getInputStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    output.append(line).append("\n");
+                }
+            }
+            // Capture any runtime errors
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(run.getErrorStream()))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     output.append(line).append("\n");
@@ -57,7 +83,7 @@ public class FileProcessorController {
             // Add results to Word
             XWPFParagraph para = doc.createParagraph();
             XWPFRun runText = para.createRun();
-            runText.setText("File: " + file.getOriginalFilename());
+            runText.setText("File: " + multipartFile.getOriginalFilename());
             runText.addBreak();
             runText.setText("Output:\n" + output);
             runText.addBreak();
