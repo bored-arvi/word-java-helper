@@ -1,4 +1,4 @@
-package com.javarunner.fileprocessor;
+package com.javarunner.javarunner;
 
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;

@@ -1,4 +1,4 @@
-package com.javarunner.fileprocessor;
+package com.javarunner.javarunner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
