@@ -1,27 +1,28 @@
-package com.javarunner.javarunner;
+package com.javarunner.service;
 
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.apache.poi.xwpf.usermodel.*;
 
-import java.io.*;
-import java.nio.file.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Objects;
 import java.util.UUID;
 
-@RestController
-@RequestMapping("/api")
-public class FileProcessorController {
-
+@Service
+public class FileProcessorService {
     private final String UPLOAD_DIR = "uploads";
     private final String OUTPUT_DIR = "outputs";
 
-    @PostMapping("/process")
-    public ResponseEntity<FileSystemResource> processFiles(@RequestParam("files") MultipartFile[] files) throws Exception {
-
+    public String processFiles(MultipartFile[] files) throws Exception{
         // Ensure directories exist
         Path uploadPath = Paths.get(UPLOAD_DIR);
         if (!Files.exists(uploadPath)) Files.createDirectories(uploadPath);
@@ -95,10 +96,6 @@ public class FileProcessorController {
         }
         doc.close();
 
-        // Return Word file
-        FileSystemResource resource = new FileSystemResource(wordFileName);
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + Paths.get(wordFileName).getFileName())
-                .body(resource);
+        return wordFileName;
     }
 }

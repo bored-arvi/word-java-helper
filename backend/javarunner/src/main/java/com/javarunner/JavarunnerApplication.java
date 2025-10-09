@@ -1,4 +1,4 @@
-package com.javarunner.javarunner;
+package com.javarunner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
